@@ -27,25 +27,85 @@ sub get_xml {
               <widget class="GtkTable" id="table1">
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="n_rows">3</property>
-                <property name="n_columns">3</property>
+                <property name="n_rows">2</property>
+                <property name="n_columns">4</property>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkCheckButton" id="check-subdirs">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">_No subdirs</property>
+                    <property name="use_underline">True</property>
+                    <property name="focus_on_click">False</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="check_toggled"/>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="right_attach">3</property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkCheckButton" id="check-literal">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Quote _literal</property>
+                    <property name="use_underline">True</property>
+                    <property name="focus_on_click">False</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="check_toggled"/>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkCheckButton" id="check-word-regexp">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">_Word regexp</property>
+                    <property name="use_underline">True</property>
+                    <property name="focus_on_click">False</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="check_toggled"/>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkCheckButton" id="check-invert-match">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip" translatable="yes">-v</property>
+                    <property name="label" translatable="yes">In_vert Match</property>
+                    <property name="use_underline">True</property>
+                    <property name="focus_on_click">False</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="check_toggled"/>
+                  </widget>
+                  <packing>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
+                  <widget class="GtkCheckButton" id="check-case-sensitive">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip" translatable="yes">-i</property>
+                    <property name="label" translatable="yes">_Ignore case</property>
+                    <property name="use_underline">True</property>
+                    <property name="focus_on_click">False</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="check_toggled"/>
+                  </widget>
                 </child>
                 <child>
                   <placeholder/>

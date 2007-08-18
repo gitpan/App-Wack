@@ -7,7 +7,7 @@ use Gtk2::GladeXML;
 use App::Ack;
 use App::Wack::Glade;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $gladexml;
 
@@ -35,8 +35,10 @@ sub on_help_clicked {
 This is version $VERSION of wack
 Using ack version $App::Ack::VERSION
 
-wack is Copyright 2007 Gabor Szabo http://search.cpan.org/dist/App-Wack
-ack is Copyright 2005-2007 Andy Lester http://search.cpan.org/dist/App-Ack
+wack, Copyright 2007 Gabor Szabo http://search.cpan.org/dist/App-Wack
+ack, Copyright 2005-2007 Andy Lester http://search.cpan.org/dist/App-Ack
+Gtk2, Copyright the gtk2-perl team http://search.cpan.org/dist/Gtk2
+perl, Copyright Larry Wall http://search.cpan.org/dist/perl
 END_HELP
     _set_result($help);
     return;
@@ -51,14 +53,37 @@ sub _set_result {
     return;
 }
 
+sub on_activate {
+    on_search_clicked();
+}
+
 sub on_search_activate {
     on_search_clicked();
+}
+
+sub check_toggled {
+    $gladexml->get_widget('search-text')->grab_focus;
 }
 
 sub on_search_clicked {
     my $result = $gladexml->get_widget('results')->get_buffer;
     my $search = $gladexml->get_widget('search-text');
     my $text = $search->get_text;
+
+
+    my %options = (
+        'check-case-sensitive' => 'i',
+        'check-invert-match'   => 'v',
+        'check-word-regexp'    => 'w',
+        'check-literal'        => 'Q',
+        'check-subdirs'        => 'n',
+    );
+    foreach my $widget (keys %options) {
+        if ($gladexml->get_widget($widget)->get_active) {
+            $text .= " -$options{$widget} ";
+        }
+    }
+    
     my $out = '';
     ack($text, sub {$out .= shift});
     _set_result($out); 

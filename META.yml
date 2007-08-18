@@ -1,6 +1,6 @@
 ---
 name: App-Wack
-version: 0.01
+version: 0.02
 author: []
 abstract: the actual code of wack the wisual ack
 license: perl
@@ -13,7 +13,7 @@ requires:
 provides:
   App::Wack:
     file: lib/App/Wack.pm
-    version: 0.01
+    version: 0.02
   App::Wack::Glade:
     file: lib/App/Wack/Glade.pm
 generated_by: Module::Build version 0.2808
