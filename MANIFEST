@@ -1,0 +1,12 @@
+Build.PL
+MANIFEST			This list of files
+Makefile.PL
+META.yml
+CHANGES
+
+bin/wack
+
+lib/App/Wack.pm
+lib/App/Wack/Glade.pm
+
+t/00-basic.t

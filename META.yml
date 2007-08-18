@@ -1,0 +1,22 @@
+---
+name: App-Wack
+version: 0.01
+author: []
+abstract: the actual code of wack the wisual ack
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  App::Ack: 1.64
+  Gtk2: 1.080
+  Gtk2::GladeXML: 0
+provides:
+  App::Wack:
+    file: lib/App/Wack.pm
+    version: 0.01
+  App::Wack::Glade:
+    file: lib/App/Wack/Glade.pm
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
