@@ -1,5 +1,8 @@
 Changes of App::Wack
 
+0.03 2007.08.19
+ Add directory chooser to search strings in a selected directory
+
 0.02 2007.08.18
 
 Add several options available on the command line as checkboxes on the app.
