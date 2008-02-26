@@ -14,8 +14,8 @@ sub get_xml {
     <property name="visible">True</property>
     <property name="title" translatable="yes">wack</property>
     <property name="window_position">GTK_WIN_POS_CENTER</property>
-    <property name="default_width">500</property>
-    <property name="default_height">500</property>
+    <property name="default_width">700</property>
+    <property name="default_height">700</property>
     <signal name="destroy" handler="on_main_destroy"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
@@ -28,9 +28,57 @@ sub get_xml {
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="n_rows">2</property>
-                <property name="n_columns">4</property>
+                <property name="n_columns">6</property>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkLabel" id="after-label">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">After</property>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="right_attach">5</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="before-label">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Before</property>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="right_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkEntry" id="after">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="width_chars">2</property>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="right_attach">4</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkEntry" id="before">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="width_chars">2</property>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="right_attach">4</property>
+                    <property name="x_options"></property>
+                  </packing>
                 </child>
                 <child>
                   <placeholder/>
@@ -47,6 +95,7 @@ sub get_xml {
                     <property name="relief">GTK_RELIEF_HALF</property>
                     <property name="use_underline">True</property>
                     <property name="focus_on_click">False</property>
+                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                   </widget>
                   <packing>
@@ -63,6 +112,7 @@ sub get_xml {
                     <property name="label" translatable="yes">_Ignore case</property>
                     <property name="use_underline">True</property>
                     <property name="focus_on_click">False</property>
+                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <signal name="toggled" handler="check_toggled"/>
                   </widget>
@@ -76,6 +126,7 @@ sub get_xml {
                     <property name="label" translatable="yes">In_vert Match</property>
                     <property name="use_underline">True</property>
                     <property name="focus_on_click">False</property>
+                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <signal name="toggled" handler="check_toggled"/>
                   </widget>
@@ -91,6 +142,7 @@ sub get_xml {
                     <property name="label" translatable="yes">_Word regexp</property>
                     <property name="use_underline">True</property>
                     <property name="focus_on_click">False</property>
+                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <signal name="toggled" handler="check_toggled"/>
                   </widget>
@@ -107,12 +159,30 @@ sub get_xml {
                     <property name="label" translatable="yes">Quote _literal</property>
                     <property name="use_underline">True</property>
                     <property name="focus_on_click">False</property>
+                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <signal name="toggled" handler="check_toggled"/>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkCheckButton" id="check-all-types">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">_All types</property>
+                    <property name="use_underline">True</property>
+                    <property name="response_id">0</property>
+                    <property name="draw_indicator">True</property>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="right_attach">3</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                   </packing>
@@ -133,6 +203,7 @@ sub get_xml {
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-help</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="on_help_clicked"/>
               </widget>
               <packing>
@@ -147,6 +218,7 @@ sub get_xml {
                 <property name="can_focus">True</property>
                 <property name="label">gtk-quit</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="on_quit_clicked"/>
               </widget>
               <packing>
@@ -196,6 +268,7 @@ sub get_xml {
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-find</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="on_search_clicked"/>
               </widget>
               <packing>
@@ -241,6 +314,7 @@ sub get_xml {
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">_Browse</property>
                 <property name="use_underline">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="browse_button_clicked"/>
               </widget>
               <packing>
@@ -288,8 +362,8 @@ sub get_xml {
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="deletable">False</property>
     <property name="has_separator">False</property>
-    <property name="action">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</property>
     <signal name="destroy" handler="directory_window_closed"/>
+    <signal name="delete_event" handler="directory_selector_delete_event_cb"/>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -311,6 +385,7 @@ sub get_xml {
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-cancel</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="directory_cancel_clicked"/>
               </widget>
             </child>
@@ -322,6 +397,7 @@ sub get_xml {
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-ok</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">0</property>
                 <signal name="clicked" handler="directory_ok_clicked"/>
               </widget>
               <packing>

@@ -8,7 +8,7 @@ use App::Ack;
 use App::Wack::Glade;
 use Cwd;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 my $gladexml;
 
@@ -34,14 +34,31 @@ sub on_help_clicked {
     my $f = join "\n",  App::Ack::filetypes_supported();
     # TODO: get the copyright from ack automatically
     #my $ack_copyrioght = App::Ack::version_statement($COPYRIGHT);
+    #my $ack_copyright = App::Ack::get_copyright();
+    my $thppt = App::Ack::_get_thpppt();
+
+    my $ack_version = $App::Ack::VERSION;
+    my $warning = '';
+    my $dev_version = '1.76';
+    if ($ack_version ne $dev_version) {
+        $warning =  "\nThis version of Wack was developed with ack version $dev_version.\n";
+        $warning .= "As you are currently using version $ack_version, there might be\n";
+        $warning .= "some issues related to this version mismatch\n";
+    }
     my $help = <<"END_HELP";
 This is version $VERSION of wack
 Using ack version $App::Ack::VERSION
+Gtk version: $Gtk2::VERSION
+Perl version: $]
 
-wack, Copyright 2007 Gabor Szabo http://search.cpan.org/dist/App-Wack
-ack, Copyright 2005-2007 Andy Lester http://search.cpan.org/dist/App-Ack
-Gtk2, Copyright the gtk2-perl team http://search.cpan.org/dist/Gtk2
-perl, Copyright Larry Wall http://search.cpan.org/dist/perl
+wack, Copyright 2007-2008 Gabor Szabo http://search.cpan.org/dist/App-Wack
+ack,  Copyright 2005-2007 Andy Lester http://search.cpan.org/dist/App-Ack
+Gtk2, Copyright 2003-2008 the gtk2-perl team http://search.cpan.org/dist/Gtk2
+perl, Copyright 1987-2008 Larry Wall http://search.cpan.org/dist/perl
+
+$thppt
+
+$warning
 
 END_HELP
     _set_result($help);
@@ -75,19 +92,26 @@ sub on_search_clicked {
     my $text   = $search->get_text;
     my $dir    = $gladexml->get_widget('directory')->get_text();
 
+    my $before = $gladexml->get_widget('before')->get_text();
+    my $after  = $gladexml->get_widget('after')->get_text();
+    $before = $before ? "-B $before" : '';
+    $after  = $after  ? "-A $after"  : '';
+
 
     my %options = (
-        'check-case-sensitive' => 'i',
-        'check-invert-match'   => 'v',
-        'check-word-regexp'    => 'w',
-        'check-literal'        => 'Q',
-        'check-subdirs'        => 'n',
+        'check-case-sensitive' => '-i',
+        'check-invert-match'   => '-v',
+        'check-word-regexp'    => '-w',
+        'check-literal'        => '-Q',
+        'check-subdirs'        => '-n',
+        'check-all-types'      => '-a',
     );
     foreach my $widget (keys %options) {
         if ($gladexml->get_widget($widget)->get_active) {
-            $text .= " -$options{$widget} ";
+            $text .= " $options{$widget} ";
         }
     }
+    $text .= " $before $after ";
     
     my $out = '';
     ack($dir, $text, sub {$out .= shift});
@@ -103,17 +127,33 @@ sub on_quit_clicked {
     exit;
 }
 
+#sub directory_changed_cb {
+#    exit;
+#}
+
 sub on_config_clicked {
     warn "Not implemented yet\n";
 }
 
 sub browse_button_clicked {
+    my $dir    = $gladexml->get_widget('directory')->get_text();
+    if (-d $dir) {
+        $gladexml->get_widget('directory-selector')->set_current_folder($dir);
+    }
     $gladexml->get_widget('directory-selector')->show;
     return; 
 }
 
 sub directory_window_closed {
-    $gladexml->get_widget('directory-selector')->hide;
+    #print "1\n";
+    #if ($gladexml->get_widget('directory-selector')) {
+        #$gladexml->get_widget('directory-selector')->hide;
+    #}
+    return;
+}
+sub directory_selector_delete_event_cb {
+    # when directory closed with escape or x
+    # but it still gets destroyed
     return;
 }
 
@@ -131,8 +171,8 @@ sub directory_cancel_clicked {
 
 sub ack {
     my ($dir, $str, $cb) = @_;
-    chdir $dir;
-    open (my $ACK, "ack $str |") or die;
+    #chdir $dir;
+    open (my $ACK, "ack $str $dir |") or die;
     while (my $line = <$ACK>) {
         $cb->($line);
     }
@@ -169,6 +209,11 @@ Email: bug-app-wack to rt.cpan.org
 add more of the available flags as checkboxes
 
 add the selected file type list as a configuration option
+File selection available in ack:
+
+ -  default
+ -a all files
+    
 
 work with Andy on ack to allow me to call the module directly 
 instead of the executable
@@ -177,9 +222,11 @@ show some sign that search is still in progress (and/or that search ended)
 
 Allow the user to abort search in the middle
 
+When selecting specific file make sure it is acked even if all the other flags are not set.
+
 =head1 COPYRIGHT
 
-Copyright 2007 Gabor Szabo, all rights reserved.
+Copyright 2007-2008 Gabor Szabo, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

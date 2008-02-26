@@ -1,5 +1,9 @@
 Changes of App::Wack
 
+0.04 2008.02.27
+ Enable selecting files in the directory and file chooser
+ Add several more options including -A and -B context
+
 0.03 2007.08.19
  Add directory chooser to search strings in a selected directory
 
