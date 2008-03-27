@@ -3,5 +3,11 @@ use strict;
 use warnings;
 
 use App::Wack;
-App::Wack->run;
+use App::Wack::Signals;
+
+App::Wack::Signals::setup();
+App::Wack::setup();
+
+my $config = App::Wack::get_config();
+App::Wack::Signals::run( $config );
 

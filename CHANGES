@@ -1,10 +1,23 @@
 Changes of App::Wack
 
+0.05 2008.03.27
+
+ Add history of searches (within the session) and show them in a drop-down list.
+ Show pop-up error messages if invalid regex given
+ When selecting specific file make sure it is acked even if that file would 
+   not be searched because of its type. So searching on single file explicitly
+   sets the -a flag.
+ Start using App::Ack directly and not via its command line interface
+ Save/load configuration (and history) (File::HomeDir, YAML)
+ Move the signal handles to App::Wack::Signals and keep the application in App::Wack
+
 0.04 2008.02.27
+
  Enable selecting files in the directory and file chooser
  Add several more options including -A and -B context
 
 0.03 2007.08.19
+
  Add directory chooser to search strings in a selected directory
 
 0.02 2007.08.18

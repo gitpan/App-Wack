@@ -1,0 +1,3 @@
+The first line of file "b.txt"
+The second line of file "b.txt"
+There is a third line too.

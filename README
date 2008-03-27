@@ -1,0 +1,5 @@
+This is the placeholder of the README file.
+CPANTS http://cpants.perl.org/ wants it to be here.
+
+Anyway, the module is a Gtk2 based wrapper of the ack command 
+line grep replacement.

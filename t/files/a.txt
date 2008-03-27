@@ -1,0 +1,2 @@
+This is the first line of the first file
+There are more lines, this is the second one

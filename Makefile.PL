@@ -5,9 +5,18 @@ WriteMakefile
           'NAME' => 'App::Wack',
           'VERSION_FROM' => 'lib/App/Wack.pm',
           'PREREQ_PM' => {
-                           'App::Ack' => '1.64',
+                           'App::Ack' => '1.78',
+                           'Carp' => '0',
+                           'Cwd' => '0',
+                           'File::HomeDir' => '0',
+                           'File::Spec' => '0',
                            'Gtk2' => '1.080',
-                           'Gtk2::GladeXML' => '0'
+                           'Gtk2::GladeXML' => '0',
+                           'List::Util' => '0',
+                           'Test::More' => '0',
+                           'Test::Pod' => '0',
+                           'Test::Pod::Coverage' => '0',
+                           'YAML' => '0'
                          },
           'INSTALLDIRS' => 'site',
           'EXE_FILES' => [

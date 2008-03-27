@@ -3,10 +3,20 @@ MANIFEST			This list of files
 Makefile.PL
 META.yml
 CHANGES
+README
 
 bin/wack
 
 lib/App/Wack.pm
+lib/App/Wack/Signals.pm
 lib/App/Wack/Glade.pm
 
 t/00-basic.t
+t/01-ack.t
+t/02-signals.t
+
+t/90-pod.t
+t/91-pod-coverage.t
+
+t/files/a.txt
+t/files/b.txt
